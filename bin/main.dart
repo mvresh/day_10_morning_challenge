@@ -7,7 +7,27 @@
 //
 // longestZero("11111") ➞ ""
 
+import 'dart:math';
 
+String longestZero(String sequence){
+  int count = 0;
+  int result = 0;
+  String finalZeros = '';
+  for(int i = 0; i < sequence.length;i++){
+    if(sequence[i] == '1'){
+      count = 0;
+    }
+    else {
+      count ++;
+      result = max(count, result);
+    }
+  }
+
+  for(int i =0;i<result;i++){
+    finalZeros = finalZeros + '0';
+  }
+  return finalZeros;
+}
 // Challenge 2
 // Create a function that performs an even-odd transform to an array, n times. Each even-odd transformation:
 //
@@ -21,8 +41,33 @@
 //
 // evenOddTransform([1, 2, 3], 1) ➞ [3, 0, 5]
 
-main() {
+dynamic evenOddTransform(List<int>numbersList, int operationNumber){
+  if(operationNumber>0){
+    for(int i = 0;i < numbersList.length;i++){
+      if(numbersList[i] % 2 == 0){
+        numbersList[i] = numbersList[i] - (2*operationNumber);
+      }
+      else{
+        numbersList[i] = numbersList[i] + (2*operationNumber);
+      }
+    }
+    return numbersList;
+  }
+  else {
+    return "invalid";
+  }
 
+}
+
+main() {
+print(longestZero("01100001011000"));
+print(longestZero("11111"));
+print(longestZero("011000010000000101"));
+
+print(evenOddTransform([3,4,5,6,7], 3));
+print(evenOddTransform([3, 4, 9], 3));
+print(evenOddTransform([0, 0, 0], 10));
+print(evenOddTransform([1, 2, 3], 1));
 }
 
 // Challenge 3
